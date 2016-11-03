@@ -1,23 +1,41 @@
 package com.theironyard;
 
+import javax.persistence.*;
+
 /**
  * Created by VeryBarry on 11/1/16.
  */
+@Entity
+@Table(name = "purchases")
 public class Purchase {
+    @Id
+    @GeneratedValue
     int id;
+
+    @Column(nullable = false)
     String date;
-    String creditcard;
-    String cvv;
-    String item;
+
+    @Column(nullable = false)
+    String creditCard;
+
+    @Column(nullable = false)
+    int cvv;
+
+    @Column(nullable = false)
+    String category;
+
+    @ManyToOne
+    Customer customer;
 
     public Purchase() {
     }
 
-    public Purchase(String date, String creditcard, String cvv, String item) {
+    public Purchase(String date, String creditCard, int cvv, String category, Customer customer) {
         this.date = date;
-        this.creditcard = creditcard;
+        this.creditCard = creditCard;
         this.cvv = cvv;
-        this.item = item;
+        this.category = category;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -36,27 +54,35 @@ public class Purchase {
         this.date = date;
     }
 
-    public String getCreditcard() {
-        return creditcard;
+    public String getCreditCard() {
+        return creditCard;
     }
 
-    public void setCreditcard(String creditcard) {
-        this.creditcard = creditcard;
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 
-    public String getItem() {
-        return item;
+    public String getCategory() {
+        return category;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

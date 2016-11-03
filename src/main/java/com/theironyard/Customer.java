@@ -1,11 +1,22 @@
 package com.theironyard;
 
+import javax.persistence.*;
+
 /**
  * Created by VeryBarry on 11/1/16.
  */
+@Entity
+@Table(name = "customers")
 public class Customer {
+
+    @Id
+    @GeneratedValue
     int id;
+
+    @Column
     String name;
+
+    @Column
     String email;
 
     public Customer() {
